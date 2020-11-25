@@ -19,6 +19,7 @@ function clear () {
     storedValue = '';
     operation = '';
     display.innerHTML = 0;
+    dot.removeAttribute('disabled');
 }
 
 function operate(op, x, y) {
@@ -47,6 +48,7 @@ function operate(op, x, y) {
 
 const calc = document.getElementsByClassName('calc')[0];
 const display = calc.children[0];
+const dot = calc.children[14];
 let displayValue = '', storedValue = '', operation = '';
 
 calc.addEventListener('click', event => { // catching clicks on anyhting inside the calculator
@@ -56,8 +58,11 @@ calc.addEventListener('click', event => { // catching clicks on anyhting inside 
         if (operation == '=') {
             clear();
         }
-        displayValue == '' ? display.innerHTML = val : display.innerHTML += val;
+        displayValue == '' ? display.innerHTML = val == '.' ? '0.' : val : display.innerHTML += val;
         displayValue = display.innerHTML;
+        if (val == '.') {
+            dot.setAttribute('disabled', true);
+        }
     } else if (btn.className == 'action') { // when an operator is pressed
     
         if (displayValue != '') { // operators can't be pressed if a number wasn't put in
@@ -78,6 +83,7 @@ calc.addEventListener('click', event => { // catching clicks on anyhting inside 
                     operation = val;
                 }
             }
+            dot.removeAttribute('disabled');
         }
     
     } else if (btn.id == 'clear') { // when clear is pressed
