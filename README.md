@@ -1,3 +1,5 @@
-A calculator. That's it.
+A calculator.
+Vanilla JS + pure CSS.
+That's it.
 
-Check it out in action here https://lennythedude.github.io/calc/
+Look at it in action https://lennythedude.github.io/calc/
